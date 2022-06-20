@@ -3,7 +3,7 @@ action='load'
 
 for arg in $@; do
     if [ $arg = '--push' ]; then
-        action='push'
+        action='push --platform=linux/arm64,linux/amd64'
     fi
 done
 
