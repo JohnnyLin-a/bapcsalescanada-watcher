@@ -1,0 +1,3 @@
+/**
+ * Entrypoint to this app.
+ */

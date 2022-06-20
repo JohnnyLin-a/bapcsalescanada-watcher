@@ -1,0 +1,22 @@
+{
+  "name": "bapcsalescanada-watcher",
+  "version": "0.0.0",
+  "main": "cmd/index.ts",
+  "repository": "https://github.com/JohnnyLin-a/bapcsalescanada-watcher",
+  "author": "JohnnyLin-a",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "build": "tsc --outDir ./dist --target ES2022 --moduleResolution node --module commonjs index.ts",
+    "dev": "ts-node index.ts"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+    "cheerio": "^1.0.0-rc.11"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  }
+}

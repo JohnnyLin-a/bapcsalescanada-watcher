@@ -1,0 +1,8 @@
+.vscode
+node_modules
+.env
+bapcsalescanada-watcher-config.json
+*.js
+dist
+pgdata
+*.html

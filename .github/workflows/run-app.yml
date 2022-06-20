@@ -1,0 +1,30 @@
+name: run-app
+
+on:
+  schedule:
+    - cron: '0 16 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-app:
+    runs-on: ubuntu-latest
+    env: 
+      BAPCSALESCANADA_WATCHER_CONFIG: ${{ secrets.BAPCSALESCANADA_WATCHER_CONFIG }}
+    steps:
+      - 
+        name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: master
+      -
+        name: Cache history.json
+        uses: actions/cache@v2
+        with:
+          path: ./history
+          key: ${{ runner.os }}-bapcsalescanada-watcher-${{ github.run_number }}
+          restore-keys: ${{ runner.os }}-bapcsalescanada-watcher-
+      -
+        name: Run app
+        run: |
+          mkdir -p history
+          docker run --rm -e BAPCSALESCANADA_WATCHER_CONFIG -v $PWD/history:/dist/history ghcr.io/johnnylin-a/bapcsalescanada-watcher:latest
