@@ -135,3 +135,6 @@ node_modules
 *.html
 bapcsalescanada-watcher-config.json
 history/history.json
+
+k8s-*
+!k8s-*.template
