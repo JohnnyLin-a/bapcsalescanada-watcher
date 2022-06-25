@@ -1,0 +1,14 @@
+# Normally, nothing to edit from this file
+apiVersion: v1
+kind: Pod
+metadata:
+    name: bapcsalescanada-watcher-pod-1
+spec:
+    containers:
+        - name: bapcsalescanada-watcher-container
+          image: ghcr.io/johnnylin-a/bapcsalescanada-watcher:latest
+          imagePullPolicy: Always
+          envFrom:
+              - secretRef:
+                    name: bapcsalescanada-watcher-secret
+    restartPolicy: Never
