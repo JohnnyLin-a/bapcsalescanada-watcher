@@ -49,7 +49,6 @@ const config: Config = process.env.BAPCSALESCANADA_WATCHER_CONFIG
 
         // Sort posts from old to new, and send new posts that are not already sent
         let msg = ""
-        allPosts.reverse()
         for (let post of allPosts) {
             if (post == history[url]) {
                 break
