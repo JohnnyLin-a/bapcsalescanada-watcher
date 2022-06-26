@@ -3,6 +3,8 @@ apiVersion: v1
 kind: Pod
 metadata:
     name: bapcsalescanada-watcher-pod-1
+    labels:
+        app: bapcsalescanada-watcher
 spec:
     containers:
         - name: bapcsalescanada-watcher-container
@@ -11,4 +13,12 @@ spec:
           envFrom:
               - secretRef:
                     name: bapcsalescanada-watcher-secret
+          volumeMounts:
+              - mountPath: /dist/history/history.json
+                name: bapcsalescanada-watcher-history
+    volumes:
+        - name: bapcsalescanada-watcher-history
+          hostPath:
+              path: /data/bapcsalescanada-watcher-volume/history.json
+              type: File
     restartPolicy: Never
