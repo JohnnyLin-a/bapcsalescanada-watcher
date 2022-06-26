@@ -6,7 +6,7 @@ COPY yarn.lock package.json /src/
 
 RUN yarn install
 
-COPY . /src/
+COPY index.ts /src/
 
 RUN yarn build
 
