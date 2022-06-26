@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+    name: bapcsalescanada-watcher-cronjob
+spec:
+    schedule: "*/5 * * * *"
+    successfulJobsHistoryLimit: 3
+    jobTemplate:
+        spec:
+            template:
+                spec:
+                    containers:
+                        - name: bapcsalescanada-watcher-container
+                          image: ghcr.io/johnnylin-a/bapcsalescanada-watcher:latest
+                          envFrom:
+                              - secretRef:
+                                    name: bapcsalescanada-watcher-secret
+                          volumeMounts:
+                              - mountPath: /dist/history/history.json
+                                name: bapcsalescanada-watcher-history
+                    volumes:
+                        - name: bapcsalescanada-watcher-history
+                          hostPath:
+                              path: /data/bapcsalescanada-watcher-volume/history.json
+                              type: File
+                    restartPolicy: Never
