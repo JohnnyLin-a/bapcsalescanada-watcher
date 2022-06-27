@@ -12,10 +12,14 @@ RUN yarn build
 
 FROM node:18-alpine as prod
 
-COPY --from=build /src/dist /src/yarn.lock /src/package.json /dist/
+RUN mkdir -p /dist
 
 WORKDIR /dist
 
+COPY yarn.lock package.json /dist/
+
 RUN yarn --production=true
+
+COPY --from=build /src/dist /dist/
 
 CMD node index.js
