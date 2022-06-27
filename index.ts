@@ -66,10 +66,12 @@ try {
         history[url] = allPosts[0]
 
         if (msg) {
+            console.log(msg)
             axios.post(config.discordWebhook, {
                 content: `${config.discordMention}\n${msg}`,
             })
         }
+        console.log("Done: ", url)
     }
     // Finally save history
     fs.writeFileSync("history/history.json", JSON.stringify(history))
