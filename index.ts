@@ -16,15 +16,16 @@ const config: Config = process.env.BAPCSALESCANADA_WATCHER_CONFIG
     ? JSON.parse(process.env.BAPCSALESCANADA_WATCHER_CONFIG)
     : require("./bapcsalescanada-watcher-config.json")
 
-;(async () => {
-    // Read history
-    let history: any
-    try {
-        history = require("./history/history.json")
-    } catch (e) {
-        history = {}
-    }
+// Read history
+let history: any
+try {
+    history = require("./history/history.json")
+} catch (e) {
+    console.log("Failed to read history")
+    process.exit(1)
+}
 
+;(async () => {
     // Iterate over each urls
     for (let url of config.urls) {
         await setTimeout(3000)
